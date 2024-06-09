@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import NavigationBar from "./components/Nav.jsx";
 import DisplayCountries from "./components/DisplayCountries.jsx";
 import ResultCountry from "./components/ResultCountry.jsx";
+import SearchBar from "./components/SearchBar.jsx";
 import "./App.css";
 
 function App() {
@@ -23,13 +24,18 @@ function App() {
     ListCountries();
   }, []);
 
+  // handle data pass from child component (SearchBar.jsx)
+  const textCountry = (data) => {};
+
   return (
-    <>
-      <NavigationBar></NavigationBar>
-      <DisplayCountries countries={countries} />
+    <div className=" bg-FEVeryDarkBlueBg">
+      <NavigationBar />
+      <SearchBar searchCountry={textCountry} />
       <ResultCountry />
+
+      <DisplayCountries countries={countries} />
       <h1>hello</h1>
-    </>
+    </div>
   );
 }
 
