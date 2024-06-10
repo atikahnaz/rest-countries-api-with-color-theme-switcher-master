@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import searchIcon from "../images/search.svg";
 
 export default function SearchBar({ search }) {
   const [searchCountry, setSearchCountry] = useState("");
@@ -17,13 +18,21 @@ export default function SearchBar({ search }) {
   return (
     <>
       <div className="flex flex-col justify-between px-5 pb-5 bg-FEVeryDarkBlueBg">
-        <input
-          className="px-5 py-2 my-5 bg-FEDarkBlue text-FEWhite"
-          placeholder="Search for a country"
-          type="search"
-          value={searchCountry}
-          onChange={handleInputChange}
-        />
+        <div id="input-wrapper bg-FEDarkBlue">
+          <img
+            className=" inline-block"
+            src={searchIcon}
+            alt=""
+            onClick={clickSearch}
+          />
+          <input
+            className="px-5 py-2 my-5 bg-FEDarkBlue text-FEWhite"
+            placeholder="Search for a country"
+            type="search"
+            value={searchCountry}
+            onChange={handleInputChange}
+          />
+        </div>
 
         <form action="" method="get">
           <select

@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   async function ListCountries() {
     const data = await fetch("https://restcountries.com/v3.1/all").then(
@@ -25,16 +26,30 @@ function App() {
   }, []);
 
   // handle data pass from child component (SearchBar.jsx)
-  const textCountry = (data) => {};
+  // find the country based on data text (country name) from countries array
+  const textCountry = (data) => {
+    console.log(data);
+    const text = data.toLowerCase();
+    console.log(text);
+    const selectedCountry = countries.filter(
+      (country) => country.name.official.toLowerCase() == text
+    );
+    setSearchText(selectedCountry);
+  };
+
+  useEffect(() => {
+    console.log(searchText);
+  }, [searchText]);
 
   return (
     <div className=" bg-FEVeryDarkBlueBg">
       <NavigationBar />
-      <SearchBar searchCountry={textCountry} />
-      <ResultCountry />
-
-      <DisplayCountries countries={countries} />
-      <h1>hello</h1>
+      <SearchBar search={textCountry} />
+      {searchText ? (
+        <ResultCountry selectedCountry={searchText} />
+      ) : (
+        <DisplayCountries countries={countries} />
+      )}
     </div>
   );
 }
