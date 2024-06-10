@@ -1,15 +1,18 @@
-export default function ResultCountry({ selectedCountry }) {
+export default function ResultCountry({ selectedCountry, back }) {
   console.log(selectedCountry);
   console.log(selectedCountry[0].name.official);
   console.log(selectedCountry[0].currencies);
   console.log(selectedCountry[0].languages);
 
   // if return object use object.entries()
+  function backButton() {
+    back(false);
+  }
 
   return (
     <>
       <div className=" h-dvh text-FEWhite ">
-        <div>Back</div>
+        <div onClick={() => backButton()}>Back</div>
         <div className=" ">
           <img src={selectedCountry[0].flags.png} alt="" />
           <div>
@@ -30,7 +33,7 @@ export default function ResultCountry({ selectedCountry }) {
               Languages:
               {Object.entries(selectedCountry[0].languages).map(
                 ([key, value], index, array) => (
-                  <span>
+                  <span key={key}>
                     {value}
                     {index < array.length - 1 && <span>, </span>}
                   </span>

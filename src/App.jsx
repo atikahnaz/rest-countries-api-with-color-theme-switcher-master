@@ -43,13 +43,18 @@ function App() {
     console.log(searchText);
   }, [searchText]);
 
+  const back = (data) => {
+    setSearchText(data);
+    setHideSearchBar(false);
+  };
+
   return (
     <div className=" bg-FEVeryDarkBlueBg">
       <NavigationBar />
       {!hideSearchBar && <SearchBar search={textCountry} />}
 
       {searchText ? (
-        <ResultCountry selectedCountry={searchText} />
+        <ResultCountry selectedCountry={searchText} back={back} />
       ) : (
         <DisplayCountries countries={countries} />
       )}
