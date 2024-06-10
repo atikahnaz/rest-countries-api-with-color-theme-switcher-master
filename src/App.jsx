@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   const [countries, setCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [hideSearchBar, setHideSearchBar] = useState(false);
 
   async function ListCountries() {
     const data = await fetch("https://restcountries.com/v3.1/all").then(
@@ -35,6 +36,7 @@ function App() {
       (country) => country.name.official.toLowerCase() == text
     );
     setSearchText(selectedCountry);
+    setHideSearchBar(true);
   };
 
   useEffect(() => {
@@ -44,7 +46,8 @@ function App() {
   return (
     <div className=" bg-FEVeryDarkBlueBg">
       <NavigationBar />
-      <SearchBar search={textCountry} />
+      {!hideSearchBar && <SearchBar search={textCountry} />}
+
       {searchText ? (
         <ResultCountry selectedCountry={searchText} />
       ) : (
