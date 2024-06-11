@@ -4,11 +4,6 @@ export default function DisplayCountries({ countries }) {
   // countries is array
   //create card for each countries
 
-  const country = countries[9];
-  if (!country) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <>
       <div className=" flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

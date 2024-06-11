@@ -8,19 +8,28 @@ import "./App.css";
 function App() {
   const [countries, setCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [codeCountry, setCodeCountry] = useState([]);
   const [hideSearchBar, setHideSearchBar] = useState(false);
 
   async function ListCountries() {
+    // store info countries
     const data = await fetch("https://restcountries.com/v3.1/all").then(
       (response) => response.json()
     );
     setCountries(data);
-    console.log(data);
-    console.log(data[0].name.official);
-    console.log(data[0].capital);
-    console.log(data[0].population);
-    console.log(data[0].region);
+
+    // code for each country
+    const codeName = data.map((country) => ({
+      name: country.name.common,
+      cca3: country.cca3,
+    }));
+    setCodeCountry(codeName);
+    console.log(codeCountry[0]); // [{name: 'Angola', cca3: 'AGO'},...{}]
   }
+
+  useEffect(() => {
+    console.log(codeCountry[0]);
+  }, [codeCountry]);
 
   useEffect(() => {
     ListCountries();
@@ -33,15 +42,21 @@ function App() {
     const text = data.toLowerCase();
     console.log(text);
     const selectedCountry = countries.filter(
-      (country) => country.name.official.toLowerCase() == text
+      (country) => country.name.common.toLowerCase() == text
     );
     setSearchText(selectedCountry);
     setHideSearchBar(true);
   };
 
-  useEffect(() => {
-    console.log(searchText);
-  }, [searchText]);
+  function codeList() {
+    // iterate countries and store the code and name
+    const codeName = countries.map((country) => ({
+      name: country.name.common,
+      cca3: country.cca3,
+    }));
+    setCodeCountry(codeName);
+    console.log(codeCountry);
+  }
 
   const back = (data) => {
     setSearchText(data);
@@ -54,7 +69,11 @@ function App() {
       {!hideSearchBar && <SearchBar search={textCountry} />}
 
       {searchText ? (
-        <ResultCountry selectedCountry={searchText} back={back} />
+        <ResultCountry
+          selectedCountry={searchText}
+          back={back}
+          codeCountry={codeCountry}
+        />
       ) : (
         <DisplayCountries countries={countries} />
       )}
