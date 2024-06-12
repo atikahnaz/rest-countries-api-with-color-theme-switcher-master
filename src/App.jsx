@@ -7,9 +7,10 @@ import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState(null);
   const [codeCountry, setCodeCountry] = useState([]);
   const [hideSearchBar, setHideSearchBar] = useState(false);
+  const [displayNoResult, setDisplayNoResult] = useState(false);
 
   async function ListCountries() {
     // store info countries
@@ -44,8 +45,12 @@ function App() {
     const selectedCountry = countries.filter(
       (country) => country.name.common.toLowerCase() == text
     );
-    setSearchText(selectedCountry);
-    setHideSearchBar(true);
+    if (selectedCountry.length === 0) {
+      setSearchText(null);
+    } else {
+      setSearchText(selectedCountry);
+      setHideSearchBar(true);
+    }
   };
 
   function codeList() {

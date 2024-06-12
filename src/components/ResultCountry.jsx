@@ -17,14 +17,16 @@ export default function ResultCountry({ selectedCountry, back, codeCountry }) {
       <div className=" h-full text-FEWhite pt-4 px-6">
         <div
           onClick={() => backButton()}
-          className="px-3 py-2 bg-FEDarkBlue w-fit cursor-pointer"
+          className="px-3 py-2 mt-5 bg-FEDarkBlue w-fit cursor-pointer rounded shadow-lg shadow-slate-800"
         >
           Back
         </div>
         <div className="mt-10 ">
           <img src={selectedCountry[0].flags.png} className="py-5" alt="" />
           <div className="space-y-5">
-            <h3>{selectedCountry[0].name.common}</h3>
+            <h3 className="text-2xl font-bold">
+              {selectedCountry[0].name.common}
+            </h3>
             <p>
               Native Name:
               {Object.values(selectedCountry[0].name.nativeName)[0].common}
@@ -53,20 +55,19 @@ export default function ResultCountry({ selectedCountry, back, codeCountry }) {
             </p>
           </div>
 
-          <div className="mt-10">
-            <h3 className=" text-2xl">
-              Border Countries:
-              <div className=" text-base">
-                {selectedCountry[0].borders.map((item, index) => (
-                  codeCountry.find(() =>)
-                  
-                  
-
-                  {/** <div className="px-3 py-2 bg-FEDarkBlue">{item}</div>*/}
-                ))}
-              </div>
-              <div>{console.log(codeCountry[0])}</div>
-            </h3>
+          <div className="mt-10 ">
+            <h3 className=" text-xl my-3">Border Countries:</h3>
+            <div className="flex flex-wrap text-base">
+              {selectedCountry[0].borders.map((code) => {
+                const fullName = codeCountry.find((item) => item.cca3 == code);
+                return (
+                  <div className="px-4 py-2 mr-3 my-3 bg-FEDarkBlue rounded shadow-sm shadow-slate-700">
+                    {fullName.name}
+                  </div>
+                );
+              })}
+            </div>
+            <div>{console.log(codeCountry[0])}</div>
           </div>
         </div>
       </div>
