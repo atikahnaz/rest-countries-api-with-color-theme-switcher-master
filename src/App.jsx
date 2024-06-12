@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [countriesRegion, setCountriesRegion] = useState([]);
   const [searchText, setSearchText] = useState(null);
   const [codeCountry, setCodeCountry] = useState([]);
   const [hideSearchBar, setHideSearchBar] = useState(false);
@@ -53,6 +54,14 @@ function App() {
     }
   };
 
+  // data = "asia"
+  const region = (data) => {
+    const regionList = countries.filter((country) => country.region == data);
+    setCountriesRegion(regionList);
+    console.log("region");
+    console.log(data);
+  };
+
   function codeList() {
     // iterate countries and store the code and name
     const codeName = countries.map((country) => ({
@@ -69,9 +78,11 @@ function App() {
   };
 
   return (
-    <div className=" bg-FEVeryDarkBlueBg">
+    <div className=" bg-FEVeryDarkBlueBg h-full">
       <NavigationBar />
-      {!hideSearchBar && <SearchBar search={textCountry} />}
+      {!hideSearchBar && (
+        <SearchBar search={textCountry} searchRegion={region} />
+      )}
 
       {searchText ? (
         <ResultCountry
@@ -79,8 +90,10 @@ function App() {
           back={back}
           codeCountry={codeCountry}
         />
-      ) : (
+      ) : countriesRegion.length === 0 ? ( // problem when clicking the region twice
         <DisplayCountries countries={countries} />
+      ) : (
+        <DisplayCountries countries={countriesRegion} />
       )}
     </div>
   );

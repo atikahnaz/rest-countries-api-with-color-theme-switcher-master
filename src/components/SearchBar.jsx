@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import searchIcon from "../images/search.svg";
 
-export default function SearchBar({ search }) {
+export default function SearchBar({ search, searchRegion }) {
   const [searchCountry, setSearchCountry] = useState("");
+  const [filter, setFilter] = useState("");
+
   const handleInputChange = (event) => {
     setSearchCountry(event.target.value);
     console.log(searchCountry);
@@ -14,6 +16,11 @@ export default function SearchBar({ search }) {
   };
 
   useEffect(() => {}, []);
+
+  const filterByRegion = (event) => {
+    setFilter(event.target.value);
+    searchRegion(filter);
+  };
 
   return (
     <>
@@ -40,6 +47,7 @@ export default function SearchBar({ search }) {
             name="region"
             id="region"
             value="test"
+            onChange={filterByRegion}
           >
             <option value="filter">Filter by region</option>
             <option value="Africa">Africa</option>
