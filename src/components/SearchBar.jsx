@@ -15,12 +15,14 @@ export default function SearchBar({ search, searchRegion }) {
     search(searchCountry);
   };
 
-  useEffect(() => {}, []);
-
   const filterByRegion = (event) => {
     setFilter(event.target.value);
-    searchRegion(filter);
+    //searchRegion(filter);
   };
+
+  useEffect(() => {
+    searchRegion(filter);
+  }, [filter]);
 
   return (
     <>
@@ -51,10 +53,10 @@ export default function SearchBar({ search, searchRegion }) {
           >
             <option value="filter">Filter by region</option>
             <option value="Africa">Africa</option>
-            <option value="America">America</option>
+            <option value="Americas">America</option>
             <option value="Asia">Asia</option>
             <option value="Europe">Europe</option>
-            <option value="Eu">Eu</option>
+            <option value="Oceania">Oceania</option>
           </select>
         </form>
       </div>

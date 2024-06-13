@@ -62,6 +62,10 @@ function App() {
     console.log(data);
   };
 
+  useEffect(() => {
+    console.log("region send" + countriesRegion);
+  }, [countriesRegion]);
+
   function codeList() {
     // iterate countries and store the code and name
     const codeName = countries.map((country) => ({
