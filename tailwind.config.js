@@ -11,6 +11,9 @@ export default {
         FEVeryLightGrayBg: "hsl(0, 0%, 98%)",
         FEWhite: "hsl(0, 0%, 100%)",
       },
+      fontFamily: {
+        FENunito: ["Nunito Sans", "sans-serif"],
+      },
     },
   },
   plugins: [],
