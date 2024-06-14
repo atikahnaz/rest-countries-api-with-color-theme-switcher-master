@@ -4,6 +4,7 @@ import DisplayCountries from "./components/DisplayCountries.jsx";
 import ResultCountry from "./components/ResultCountry.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 import "./App.css";
+import "./index.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -11,6 +12,7 @@ function App() {
   const [searchText, setSearchText] = useState(null);
   const [codeCountry, setCodeCountry] = useState([]);
   const [hideSearchBar, setHideSearchBar] = useState(false);
+  const [darkMode, setDarkMode] = useState(null);
   const [displayNoResult, setDisplayNoResult] = useState(false);
 
   async function ListCountries() {
@@ -81,11 +83,24 @@ function App() {
     setHideSearchBar(false);
   };
 
+  function changeMode(data) {
+    console.log(data + "mode");
+    setDarkMode(data);
+  }
+
   return (
-    <div className=" bg-FEVeryDarkBlueBg h-full">
-      <NavigationBar />
+    <div
+      className={`h-full font-FENunito ${
+        darkMode ? "bg-FEVeryDarkBlueBg" : "bg-FEVeryLightGrayBg"
+      }`}
+    >
+      <NavigationBar changeMode={changeMode} />
       {!hideSearchBar && (
-        <SearchBar search={textCountry} searchRegion={region} />
+        <SearchBar
+          search={textCountry}
+          searchRegion={region}
+          darkMode={darkMode}
+        />
       )}
 
       {searchText ? (
@@ -93,11 +108,12 @@ function App() {
           selectedCountry={searchText}
           back={back}
           codeCountry={codeCountry}
+          darkMode={darkMode}
         />
       ) : countriesRegion.length === 0 ? ( // problem when clicking the region twice
-        <DisplayCountries countries={countries} />
+        <DisplayCountries countries={countries} darkMode={darkMode} />
       ) : (
-        <DisplayCountries countries={countriesRegion} />
+        <DisplayCountries countries={countriesRegion} darkMode={darkMode} />
       )}
     </div>
   );
