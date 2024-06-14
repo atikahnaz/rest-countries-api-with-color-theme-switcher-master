@@ -10,7 +10,6 @@ export default function NavigationBar({ changeMode }) {
     setDarkMode(!darkMode);
   }
   useEffect(() => {
-    console.log(darkMode);
     changeMode(darkMode);
   }, [darkMode]);
 

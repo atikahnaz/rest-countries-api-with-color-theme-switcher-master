@@ -4,10 +4,6 @@ export default function ResultCountry({
   codeCountry,
   darkMode,
 }) {
-  console.log(selectedCountry);
-  console.log(selectedCountry[0].name.official);
-  console.log(selectedCountry[0].currencies);
-  console.log(selectedCountry[0].languages);
   if (!codeCountry || codeCountry.length === 0) {
     return <p>loading</p>;
   }
@@ -106,7 +102,6 @@ export default function ResultCountry({
                 );
               })}
             </div>
-            <div>{console.log(codeCountry[0])}</div>
           </div>
         </div>
       </div>

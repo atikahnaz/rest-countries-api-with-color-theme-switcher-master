@@ -4,6 +4,7 @@ import searchIcon from "../images/search.svg";
 export default function SearchBar({ search, searchRegion, darkMode }) {
   const [searchCountry, setSearchCountry] = useState("");
   const [filter, setFilter] = useState("");
+  const [optionText, setOptionText] = useState("Filter by region");
 
   const handleInputChange = (event) => {
     setSearchCountry(event.target.value);
@@ -17,16 +18,13 @@ export default function SearchBar({ search, searchRegion, darkMode }) {
 
   const filterByRegion = (event) => {
     setFilter(event.target.value);
+    setOptionText(event.target.value);
     //searchRegion(filter);
   };
 
   useEffect(() => {
     searchRegion(filter);
   }, [filter]);
-
-  useEffect(() => {
-    console.log(darkMode);
-  }, [darkMode]);
 
   return (
     <>
@@ -73,7 +71,7 @@ export default function SearchBar({ search, searchRegion, darkMode }) {
             onChange={filterByRegion}
           >
             <option value="default" id="filter" className=" hidden">
-              Filter by region
+              {optionText}
             </option>
             <option value="Africa">Africa</option>
             <option value="Americas">America</option>

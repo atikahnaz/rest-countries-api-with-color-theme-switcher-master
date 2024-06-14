@@ -28,12 +28,7 @@ function App() {
       cca3: country.cca3,
     }));
     setCodeCountry(codeName);
-    console.log(codeCountry[0]); // [{name: 'Angola', cca3: 'AGO'},...{}]
   }
-
-  useEffect(() => {
-    console.log(codeCountry[0]);
-  }, [codeCountry]);
 
   useEffect(() => {
     ListCountries();
@@ -42,9 +37,7 @@ function App() {
   // handle data pass from child component (SearchBar.jsx)
   // find the country based on data text (country name) from countries array
   const textCountry = (data) => {
-    console.log(data);
     const text = data.toLowerCase();
-    console.log(text);
     const selectedCountry = countries.filter(
       (country) => country.name.common.toLowerCase() == text
     );
@@ -60,13 +53,7 @@ function App() {
   const region = (data) => {
     const regionList = countries.filter((country) => country.region == data);
     setCountriesRegion(regionList);
-    console.log("region");
-    console.log(data);
   };
-
-  useEffect(() => {
-    console.log("region send" + countriesRegion);
-  }, [countriesRegion]);
 
   function codeList() {
     // iterate countries and store the code and name
@@ -84,7 +71,6 @@ function App() {
   };
 
   function changeMode(data) {
-    console.log(data + "mode");
     setDarkMode(data);
   }
 
