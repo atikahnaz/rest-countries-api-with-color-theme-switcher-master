@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-
-export default function DisplayCountries({ countries, darkMode }) {
-  // countries is array
-  //create card for each countries
+export default function DisplayCountries({ countries, darkMode, infoCountry }) {
+  // card clicked to display information
+  // callback function to App.jsx
+  function searchCountry(index) {
+    infoCountry(index);
+  }
 
   return (
     <>
@@ -13,6 +14,8 @@ export default function DisplayCountries({ countries, darkMode }) {
       >
         {countries.map((country, key) => (
           <div
+            key={key}
+            onClick={() => searchCountry(country.name.common)}
             className={`${
               darkMode ? "dark-mode" : "light-mode-whitebg"
             } mb-10 rounded m-auto max-w-72 shadow-md font-light`}
