@@ -13,7 +13,6 @@ function App() {
   const [codeCountry, setCodeCountry] = useState([]);
   const [hideSearchBar, setHideSearchBar] = useState(false);
   const [darkMode, setDarkMode] = useState(null);
-  const [displayNoResult, setDisplayNoResult] = useState(false);
 
   async function ListCountries() {
     // store info countries
@@ -49,21 +48,11 @@ function App() {
     }
   };
 
-  // data = "asia"
+  // data = eg."asia"
   const region = (data) => {
     const regionList = countries.filter((country) => country.region == data);
     setCountriesRegion(regionList);
   };
-
-  function codeList() {
-    // iterate countries and store the code and name
-    const codeName = countries.map((country) => ({
-      name: country.name.common,
-      cca3: country.cca3,
-    }));
-    setCodeCountry(codeName);
-    console.log(codeCountry);
-  }
 
   const back = (data) => {
     setSearchText(data);
@@ -73,6 +62,12 @@ function App() {
   function changeMode(data) {
     setDarkMode(data);
   }
+
+  function indexCountry(index) {
+    setSearchText(countries[index]);
+  }
+
+  useEffect(() => {}, [searchText]);
 
   return (
     <div
@@ -96,10 +91,18 @@ function App() {
           codeCountry={codeCountry}
           darkMode={darkMode}
         />
-      ) : countriesRegion.length === 0 ? ( // problem when clicking the region twice
-        <DisplayCountries countries={countries} darkMode={darkMode} />
+      ) : countriesRegion.length === 0 ? (
+        <DisplayCountries
+          countries={countries}
+          darkMode={darkMode}
+          infoCountry={textCountry}
+        />
       ) : (
-        <DisplayCountries countries={countriesRegion} darkMode={darkMode} />
+        <DisplayCountries
+          countries={countriesRegion}
+          darkMode={darkMode}
+          infoCountry={textCountry}
+        />
       )}
     </div>
   );
