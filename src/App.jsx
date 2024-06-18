@@ -14,8 +14,8 @@ function App() {
   const [hideSearchBar, setHideSearchBar] = useState(false);
   const [darkMode, setDarkMode] = useState(null);
 
+  // store information of all countries
   async function ListCountries() {
-    // store info countries
     const data = await fetch("https://restcountries.com/v3.1/all").then(
       (response) => response.json()
     );
@@ -29,6 +29,7 @@ function App() {
     setCodeCountry(codeName);
   }
 
+  // render all countries when reload
   useEffect(() => {
     ListCountries();
   }, []);
@@ -48,6 +49,7 @@ function App() {
     }
   };
 
+  // filter countries based on region
   // data = eg."asia"
   const region = (data) => {
     const regionList = countries.filter((country) => country.region == data);
@@ -61,10 +63,6 @@ function App() {
 
   function changeMode(data) {
     setDarkMode(data);
-  }
-
-  function indexCountry(index) {
-    setSearchText(countries[index]);
   }
 
   useEffect(() => {}, [searchText]);
