@@ -73,15 +73,20 @@ function App() {
         darkMode ? "bg-FEVeryDarkBlueBg" : "bg-FEVeryLightGrayBg"
       }`}
     >
-      <NavigationBar changeMode={changeMode} />
-      {!hideSearchBar && (
-        <SearchBar
-          search={textCountry}
-          searchRegion={region}
-          darkMode={darkMode}
-        />
-      )}
-
+      <div
+        className={`fixed w-full ${
+          darkMode ? "bg-FEVeryDarkBlueBg" : "bg-FEVeryLightGrayBg"
+        }`}
+      >
+        <NavigationBar changeMode={changeMode} />
+        {!hideSearchBar && (
+          <SearchBar
+            search={textCountry}
+            searchRegion={region}
+            darkMode={darkMode}
+          />
+        )}
+      </div>
       {searchText ? (
         <ResultCountry
           selectedCountry={searchText}

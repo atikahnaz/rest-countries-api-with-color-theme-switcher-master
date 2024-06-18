@@ -16,7 +16,7 @@ export default function NavigationBar({ changeMode }) {
   return (
     <>
       <div
-        className={`flex justify-between md:px-20 text-sm ${
+        className={`flex  justify-between md:px-20 text-sm ${
           darkMode ? "dark-mode" : "light-mode-whitebg"
         }  text-FEWhite px-5 py-8 shadow-sm  mb-2`}
       >

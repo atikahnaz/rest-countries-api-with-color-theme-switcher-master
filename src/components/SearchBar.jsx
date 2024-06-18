@@ -29,7 +29,7 @@ export default function SearchBar({ search, searchRegion, darkMode }) {
   return (
     <>
       <div
-        className={` md:flex-row flex flex-col justify-between px-5 pb-5 md:px-20 text-sm ${
+        className={`top-24 md:flex-row flex flex-col justify-between px-5 pb-5 md:px-20 text-sm ${
           darkMode ? "bg-FEVeryDarkBlueBg" : " bg-FEVeryLightGrayBg"
         } `}
       >
