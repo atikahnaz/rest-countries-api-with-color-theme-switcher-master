@@ -30,7 +30,7 @@ export default function ResultCountry({
       <div
         className={` ${
           darkMode ? " bg-FEVeryDarkBlue text-FEWhite" : "light-mode"
-        } px-6 h-screen font-light lg:px-20 pt-24`}
+        } px-6 h-full font-light lg:px-20 pt-24`}
       >
         <div
           onClick={() => backButton()}
