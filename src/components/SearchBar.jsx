@@ -29,7 +29,7 @@ export default function SearchBar({ search, searchRegion, darkMode }) {
   return (
     <>
       <div
-        className={` md:flex-row flex flex-col justify-between px-5 pb-5 md:px-20  ${
+        className={` md:flex-row flex flex-col justify-between px-5 pb-5 md:px-20 text-sm ${
           darkMode ? "bg-FEVeryDarkBlueBg" : " bg-FEVeryLightGrayBg"
         } `}
       >
@@ -64,7 +64,7 @@ export default function SearchBar({ search, searchRegion, darkMode }) {
           <select
             className={`${
               darkMode ? "dark-mode" : "light-mode-whitebg"
-            } px-5  py-2 rounded focus:outline-none shadow-md`}
+            } px-5  py-2 rounded outline-none shadow-md`}
             name="region"
             id="region"
             value="test"
@@ -73,7 +73,9 @@ export default function SearchBar({ search, searchRegion, darkMode }) {
             <option value="default" id="filter" className=" hidden">
               {optionText}
             </option>
-            <option value="Africa">Africa</option>
+            <option className=" " value="Africa">
+              Africa
+            </option>
             <option value="Americas">America</option>
             <option value="Asia">Asia</option>
             <option value="Europe">Europe</option>

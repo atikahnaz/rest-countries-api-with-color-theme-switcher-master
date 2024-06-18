@@ -20,11 +20,13 @@ export default function DisplayCountries({ countries, darkMode, infoCountry }) {
               darkMode ? "dark-mode" : "light-mode-whitebg"
             } mb-10 rounded m-auto max-w-72 shadow-md font-light`}
           >
-            <img
-              className="m-auto w-72 h-auto"
-              src={country.flags.png}
-              alt=""
-            />
+            <div className="border-2 h-52 border-red-600">
+              <img
+                className="m-auto object-cover"
+                src={country.flags.png}
+                alt=""
+              />
+            </div>
 
             <div className="px-4 py-7 space-y-2 ">
               <h3 className=" font-extrabold text-xl pb-4">
